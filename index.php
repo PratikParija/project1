@@ -109,25 +109,6 @@ class htmlTable extends page{
 		echo '</table></body></html>';
 
 	}
-
-	/*public function post(){
-		$fileName = $_REQUEST['filename'];
-		
-		$f = fopen($fileName, 'r');
-		$data = fgetcsv($f);
-		echo('<table>');
-		while(($data = fgetcsv($f)) !== FALSE){
-			//generate HTML
-			echo '<tr>';
-			foreach($data as $cell){
-				echo '<td>' . htmlspecialchars($cell) . '</td>';
-			}
-			echo '</tr>\n';
-		}
-		fclose($f);
-		echo '\n</table></body></html>';
- 
-	}*/
 }
 
 
