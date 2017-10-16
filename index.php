@@ -112,7 +112,8 @@ class uploadForm extends page{
 			        echo "Sorry, there was an error	uploading your file.";
 			}
 		}
-
+		
+		//Directs to a new page
 		header("Location: https://web.njit.edu/~pp285/project1/index.php?page=htmlTable&file=$file");
 
 	}
