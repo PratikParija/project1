@@ -94,28 +94,28 @@ class uploadForm extends page{
 		$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		//Check if file is a csv file or not
 		if($fileType != "csv"){
-		        echo "Sorry, only CSV files are allowed.";
+		        stringFunctions::printThis("Sorry, only CSV files are allowed.");
 			$uploadOk = 0;
 		}
 
 		//Check if $uploadOk is set to 0 by an error
 		if($uploadOk == 0){
-		        echo "Sorry, your file was not uploaded.";
+		        stringFunctions::printThis("Sorry, your file was not uploaded.");
 		//if everything is ok, try to upload file
 		}
 		else{
 		        if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file)){
-		                echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
+		                stringFunctions::printThis("The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.");
 			        $file =	($_FILES["fileToUpload"]["name"]);
+				
+				//Directs to a new page
+				header("Location: https://web.njit.edu/~pp285/project1/index.php?page=htmlTable&file=$file");
 			}
 			else{
-			        echo "Sorry, there was an error	uploading your file.";
+			        stringFunctions::printThis("Sorry, there was an error uploading your file.");
 			}
 		}
 		
-		//Directs to a new page
-		header("Location: https://web.njit.edu/~pp285/project1/index.php?page=htmlTable&file=$file");
-
 	}
 }
 
@@ -127,17 +127,17 @@ class htmlTable extends page{
 
 		$f = fopen("uploads/$fileName",'r');
 		$data = fgetcsv($f);
-		echo '<html><body><table>';
+		stringFunctions::printThis('<html><body><table>');
 		while(($data =	fgetcsv($f)) !== FALSE){
 			//generate HTML
-			echo '<tr>';
+			stringFunctions::printThis('<tr>');
 			foreach($data as $cell){
-				echo '<td>' . htmlspecialchars($cell) . '</td>';
+				stringFunctions::printThis('<td>' . htmlspecialchars($cell) . '</td>');
 			}
-			echo '</tr>';
+			stringFunctions::printThis('</tr>');
 		}
 		fclose($f);
-		echo '</table></body></html>';
+		stringFunctions::printThis('</table></body></html>');
 
 	}
 }
